@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:clima/utilities/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CityScreen extends StatefulWidget {
   @override
@@ -8,61 +9,58 @@ class CityScreen extends StatefulWidget {
 
 class _CityScreenState extends State<CityScreen> {
   String entree;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/city_background.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        constraints: BoxConstraints.expand(),
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: FlatButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Icon(
-                    Icons.arrow_back_ios,
-                    size: 50.0,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(20.0),
-                child: TextField(
-                  onChanged: (value) {
-                    entree = value;
-                  },
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                      icon: Icon(Icons.location_city),
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      hintText: "city name",
-                      hintStyle: TextStyle(color: Colors.grey)),
-                ),
-              ),
-              FlatButton(
+      backgroundColor: kWhiteColor,
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context, entree);
+                  Navigator.pop(context);
                 },
-                child: Text(
-                  'Get Weather',
-                  style: kButtonTextStyle,
+                icon: Icon(
+                  FontAwesomeIcons.arrowLeft,
+                  color: kBlackColor,
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: TextField(
+                onChanged: (value) {
+                  entree = value;
+                },
+                style: TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      FontAwesomeIcons.city,
+                      color: kBlackColor,
+                      size: 20,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                    hintText: "City name",
+                    hintStyle: TextStyle(color: Colors.grey[600])),
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.pop(context, entree);
+              },
+              child: Text(
+                'Get Weather',
+                style: kButtonTextStyle,
+              ),
+            ),
+          ],
         ),
       ),
     );

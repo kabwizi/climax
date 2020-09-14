@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../services/location.dart';
 import '../services/networking.dart';
 
@@ -22,23 +25,29 @@ class WeatherModel {
     return resultat;
   }
 
-  String getWeatherIcon(int condition) {
+  IconData getWeatherIcon(int condition) {
     if (condition < 300) {
-      return '🌩';
-    } else if (condition < 400) {
-      return '🌧';
-    } else if (condition < 600) {
-      return '☔️';
-    } else if (condition < 700) {
-      return '☃️';
-    } else if (condition < 800) {
-      return '🌫';
-    } else if (condition == 800) {
-      return '☀️';
-    } else if (condition <= 804) {
-      return '☁️';
+      return FontAwesomeIcons.pooStorm;
+    } else if (condition > 299 && condition <= 499) {
+      return FontAwesomeIcons.cloudShowersHeavy;
+    } else if (condition > 499 && condition <= 510) {
+      return FontAwesomeIcons.cloudRain;
+    } else if (condition > 510 && condition <= 520) {
+      return FontAwesomeIcons.snowflake;
+    } else if (condition > 520 && condition <= 599) {
+      return FontAwesomeIcons.cloudShowersHeavy; //--
+    } else if (condition > 599 && condition < 699) {
+      return FontAwesomeIcons.snowflake; //--
+    } else if (condition > 699 && condition <= 799) {
+      return FontAwesomeIcons.smog;
+    } else if (condition == 801) {
+      return FontAwesomeIcons.cloudSun;
+    } else if (condition == 802) {
+      return FontAwesomeIcons.cloud;
+    } else if (condition == 804 || condition == 803) {
+      return FontAwesomeIcons.cloud;
     } else {
-      return '🤷‍';
+      return FontAwesomeIcons.sun;
     }
   }
 
